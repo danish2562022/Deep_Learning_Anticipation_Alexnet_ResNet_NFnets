@@ -1,3 +1,4 @@
+# Code written by NCT group
 # Uncertainty-aware Anticipation of Sparse Surgical Instrument Usage
 
 PyTorch implementation of uncertainty-aware anticipation of sparse surgical instrument usage.
