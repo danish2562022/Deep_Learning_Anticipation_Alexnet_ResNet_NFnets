@@ -2,19 +2,34 @@ import os.path
 
 def extractor(video, folderNumber):
 	videoNumber = video[5:7]
-	os.chdir('./' + folderNumber) 
+	# print(os.getcwd())
+	path=os.path.join('C:/Users/Public/Dataset_Cholec/ins_ant-master', str(folderNumber))
+	# print(path)
+	os.chdir(path)
+	print(os.getcwd())
 	os.system('mkdir ' + videoNumber)
-	os.chdir('..') 
+	os.chdir('..')
+	print(os.getcwd())
+	path='Cholec80/videos'
+
 	# -r 1 extracts one frame every second. First frame of every video is 00000000.png
-	os.system('ffmpeg -hide_banner -i ' + video + ' -r 1 ' + '-start_number 0 ./' + folderNumber + '/' + videoNumber + '/%08d.png')
+	os.chdir(path)
+	path=path+'/' + str(video)
+	print(os.getcwd())
+	path_output='C:/Users/Public/Dataset_Cholec/ins_ant-master/'
+	os.system('ffmpeg -hide_banner -i ' + video + ' -r 1 ' + '-start_number 0 '+path_output + folderNumber + '/' + videoNumber + '/%08d.png')
 
 # execute script in <...>/cholec80/videos
 os.system('mkdir 1 | mkdir 2 | mkdir 3 | mkdir 4')
+os.chdir("C:/Users/Public/Dataset_Cholec/ins_ant-master/Cholec80/videos")
+print("Current Working Directory " , os.getcwd())
+print(os.listdir())
 video_files = sorted([f for f in os.listdir() if '.mp4' in f])
-
+print(video_files)
 for file in video_files:
 
 	videoNumber = file[5:7]
+	print(videoNumber)
 	
 	if videoNumber in ['02','04','06','12','24','29','34','37','38','39','44','58','60','61','64','66','75','78','79','80']:
 		extractor(file, '1')
